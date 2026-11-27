@@ -1,3 +1,11 @@
+[![make.fun — Make the best flight game](https://make.fun/badge/best-flight-game-20261126-0057.svg)](https://make.fun/bounty/best-flight-game-20261126-0057)
+
+![Live rank on make.fun](https://make.fun/badge/best-flight-game-20261126-0057/Badroesxero/sky-ace-valley-wings/rank.svg)
+
+![Live reward on make.fun](https://make.fun/badge/best-flight-game-20261126-0057/Badroesxero/sky-ace-valley-wings/reward.svg)
+
+Entry for the [make.fun "Make the best flight game" bounty](https://make.fun/bounty/best-flight-game-20261126-0057).
+
 # Sky Ace — Valley Wings
 
 An original, complete flight game in plain static files. Chase view behind
