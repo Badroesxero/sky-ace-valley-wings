@@ -39,3 +39,23 @@ writeFileSync(
     game_path_max_bytes: 1000,
   }),
 );
+
+// Sky Ace — Valley Wings build verification (added for this entry; the starter
+// wrote the dossier and stopped). Refuse a hand-in that could not be judged:
+// the copied game must carry its entrypoint, and screenshots/ must hold the
+// 3 or 4 shots the bounty asks for, each inside the same 256 KiB cap the
+// dossier was built with. Then say, in one line, what was handed in.
+import { readdirSync, statSync } from 'node:fs';
+
+const shotCapBytes = 262144;
+const entrypoint = join(out, 'game', 'index.html');
+if (!existsSync(entrypoint)) throw new Error('build verification failed: game/index.html missing from the output');
+const shotNames = readdirSync(join(out, 'screenshots')).filter((name) => /\.(png|jpe?g)$/i.test(name)).sort();
+if (shotNames.length < 3 || shotNames.length > 4) {
+  throw new Error(`build verification failed: expected 3 or 4 screenshots, found ${shotNames.length}`);
+}
+for (const name of shotNames) {
+  const size = statSync(join(out, 'screenshots', name)).size;
+  if (size > shotCapBytes) throw new Error(`build verification failed: screenshots/${name} is ${size} bytes, over the ${shotCapBytes} cap`);
+}
+console.log(`Sky Ace — Valley Wings: handed in game/index.html plus ${shotNames.length} screenshots (${shotNames.join(', ')}); dossier.json written to ${out}`);
